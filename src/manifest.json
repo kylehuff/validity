@@ -2,6 +2,7 @@
 	"name": "Validity",
 	"version": "@version@",/*!debug*/
 	"version": "0.0.0",/*gubed!*/
+	"manifest_version": 2,
 	"description": "Click the icon in the address bar or press Ctrl+Alt+V to validate the current page.  Results can be seen in Chrome's JS console.",
 	"icons": {
 		"16": "icons/16.png",
@@ -18,7 +19,9 @@
 		"matches": ["*://*/*"],
 		"js": ["validity.js"]
 	}],
-	"background_page": "background.html",
+	"background": {
+	    "page": "background.html"
+	},
 	"page_action": {
 		"default_icon": "img/html_valid.png",
 		"default_title": "Validate Documemt (Alt+Shift+V)"

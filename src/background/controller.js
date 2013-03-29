@@ -165,3 +165,7 @@ var validity = (function(validity) {
 	validity.controller = controller;
 	return validity;
 })(validity || {});
+
+window.addEventListener("load", function load(event) {
+    validity.controller._init();
+});
