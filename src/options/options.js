@@ -14,42 +14,40 @@ var validity = (function(validity) {
 			collapsed = $('collapse');
 
 		//	Load options
-		window.addEventListener('load', function() {
-			var enableHosts = [],
-				validateHosts = [];
+		var enableHosts = [],
+			validateHosts = [];
 
-			//	TODO: abstract select box population into function
-			if (localStorage['enableHosts']) {
-				enableHosts = localStorage['enableHosts'].split(' ');
-				for (var i = 0; i < enableHosts.length; i++) {
-					hostOpt = document.createElement('option');
-					hostOpt.textContent = enableHosts[i];
-					enableHostsElm.appendChild(hostOpt);
-				}
+		//	TODO: abstract select box population into function
+		if (localStorage['enableHosts']) {
+			enableHosts = localStorage['enableHosts'].split(' ');
+			for (var i = 0; i < enableHosts.length; i++) {
+				hostOpt = document.createElement('option');
+				hostOpt.textContent = enableHosts[i];
+				enableHostsElm.appendChild(hostOpt);
 			}
+		}
 
-			if (localStorage['validateHosts'] !== undefined) {
-				validateHosts = localStorage['validateHosts'].split(' ');
-				//	Loop through hosts to populate select box
-				for (var j = 0; j < validateHosts.length; j++) {
-					hostOpt = document.createElement('option');
-					hostOpt.textContent = validateHosts[j];
-					validateHostsElm.appendChild(hostOpt);
-				}
+		if (localStorage['validateHosts'] !== undefined) {
+			validateHosts = localStorage['validateHosts'].split(' ');
+			//	Loop through hosts to populate select box
+			for (var j = 0; j < validateHosts.length; j++) {
+				hostOpt = document.createElement('option');
+				hostOpt.textContent = validateHosts[j];
+				validateHostsElm.appendChild(hostOpt);
 			}
+		}
 
-			if (localStorage['validator'] !== undefined) {
-				validator.value = localStorage['validator'];
-			}
+		if (localStorage['validator'] !== undefined) {
+			validator.value = localStorage['validator'];
+		}
 
-			if (localStorage['collapseResults'] !== undefined) {
-				collapsed.checked = options.toBool(localStorage['collapseResults']);
-			}
-			else {
-				//	Defaults to true
-				collapsed.checked = true;
-			}
-		});
+		if (localStorage['collapseResults'] !== undefined) {
+			collapsed.checked = options.toBool(localStorage['collapseResults']);
+		}
+		else {
+			//	Defaults to true
+			collapsed.checked = true;
+		}
 	}
 
 	//	Save options
@@ -169,3 +167,7 @@ var validity = (function(validity) {
 	validity.options = options;
 	return validity;
 })(validity || {});
+
+window.addEventListener("load", function load(event) {
+    validity.options.init();
+});
